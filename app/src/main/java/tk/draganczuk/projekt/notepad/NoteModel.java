@@ -21,9 +21,7 @@ class NoteModel {
         String content = "";
         try {
             content = String.join("\n", Files.readAllLines(file.toPath()));
-            if (content.length() > 25) {
-                content = content.substring(0, 25) + "...";
-            }
+
         } catch (IOException e) {
             Log.e("NoteModel", "Error reading note", e);
             e.printStackTrace();

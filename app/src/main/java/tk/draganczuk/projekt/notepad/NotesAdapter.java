@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import tk.draganczuk.projekt.R;
 
-//@AllArgsConstructor
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
     private List<NoteModel> notes;
@@ -50,13 +49,20 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         Button editButton = holder.editButton;
         Button deleteButton = holder.deleteButton;
 
+        String content = note.getContent();
+
+        if (content.length() > 25) {
+            content = content.substring(0, 25) + "...";
+        }
+
         noteTitleView.setText(note.getTitle());
-        noteContentView.setText(note.getContent());
+        noteContentView.setText(content);
 
         editButton.setOnClickListener((view) -> {
 
             Intent editIntent = new Intent(view.getContext(), EditNoteActivity.class);
             Bundle bundle = new Bundle();
+
 
             bundle.putString("note.title", note.getTitle());
             bundle.putString("note.content", note.getContent());
@@ -81,6 +87,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         this.filtered = this.notes.stream()
                 .filter(s -> s.getTitle().toLowerCase().contains(filter.toLowerCase()))
                 .collect(Collectors.toList());
+        this.notifyDataSetChanged();
     }
 
     @Override

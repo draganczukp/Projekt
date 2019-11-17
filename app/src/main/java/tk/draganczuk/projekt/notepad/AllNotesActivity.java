@@ -58,6 +58,19 @@ public class AllNotesActivity extends AppCompatActivity {
 
         TextView filterInput = findViewById(R.id.filter);
         Button filterButton = findViewById(R.id.filterButton);
+
+        filterInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                notesAdapter.filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
         filterButton.setOnClickListener((view) -> notesAdapter.filter(filterInput.getText().toString()));
     }
 
