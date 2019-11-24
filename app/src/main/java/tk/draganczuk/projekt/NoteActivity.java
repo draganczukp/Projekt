@@ -1,11 +1,11 @@
 package tk.draganczuk.projekt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import tk.draganczuk.projekt.notepad.AllNotesActivity;
 import tk.draganczuk.projekt.notepad.EditNoteActivity;

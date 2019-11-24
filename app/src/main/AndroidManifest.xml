@@ -12,6 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+        <receiver android:name=".notepad.NotesWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/notes_widget_info" />
+        </receiver>
+
         <activity android:name=".notepad.AllNotesActivity" />
         <activity android:name=".notepad.EditNoteActivity" />
         <activity android:name=".NoteActivity" />

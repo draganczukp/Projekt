@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +17,14 @@ import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
 import tk.draganczuk.projekt.R;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
+    @Getter
+    @Setter
     private List<NoteModel> notes;
 
     private List<NoteModel> filtered;
@@ -76,7 +81,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             File filesDir = view.getContext().getFilesDir();
             File file = new File(filesDir, note.getTitle() + ".txt");
 
-            file.delete();
+            if (file.delete()) {
+                Toast.makeText(
+                        view.getContext(),
+                        String.format("File %s.txt deleted", note.getTitle()),
+                        Toast.LENGTH_SHORT)
+                    .show();
+            }
 
             notes.remove(position);
 

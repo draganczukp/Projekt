@@ -49,4 +49,13 @@ public class EditNoteActivity extends AppCompatActivity {
 
     }
 
+    public void onSaveAndExitButtonClick(View view){
+        onSaveButtonClick(view);
+        finish();
+    }
+
+    public void onExitButtonClick(View view){
+        finish();
+    }
+
 }
