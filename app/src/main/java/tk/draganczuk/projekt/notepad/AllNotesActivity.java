@@ -1,5 +1,6 @@
 package tk.draganczuk.projekt.notepad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,12 +8,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -58,11 +61,19 @@ public class AllNotesActivity extends AppCompatActivity {
         filterButton.setOnClickListener((view) -> notesAdapter.filter(filterInput.getText().toString()));
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        notesAdapter.setNotes(getNotes());
+        notesAdapter.notifyDataSetChanged();
+    }
+
     private List<NoteModel> getNotes() {
         String[] files = fileList();
 
         return Arrays.stream(Objects.requireNonNull(files))
                 .filter(s -> s.endsWith(".txt"))
+                .sorted(Comparator.naturalOrder())
                 .map(s -> new File(getFilesDir(), s))
                 .map(NoteModel::fromFile)
                 .peek(note -> Log.d(TAG, note.toString()))

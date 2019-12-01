@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,6 +43,8 @@ public class EditNoteActivity extends AppCompatActivity {
         CharSequence text = contentView.getText();
 
         try (FileOutputStream out = openFileOutput(title + ".txt", Context.MODE_PRIVATE)) {
+            Log.d(TAG, "onSaveButtonClick: " + text.toString());
+            Toast.makeText(this, "Saved %s"+text.toString(), Toast.LENGTH_SHORT).show();
             out.write(text.toString().getBytes());
         } catch (IOException e) {
             Log.e(TAG, "onSaveButtonClick: Error saving", e);
@@ -50,6 +53,7 @@ public class EditNoteActivity extends AppCompatActivity {
     }
 
     public void onSaveAndExitButtonClick(View view){
+        Log.d(TAG, "onSaveAndExitButtonClick: ");
         onSaveButtonClick(view);
         finish();
     }

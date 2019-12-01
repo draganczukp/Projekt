@@ -90,9 +90,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             }
 
             notes.remove(position);
+            notifyDataSetChanged();
+        });
 
+        holder.itemView.setOnClickListener((view) -> {
+
+            Intent editIntent = new Intent(view.getContext(), EditNoteActivity.class);
+            Bundle bundle = new Bundle();
+
+
+            bundle.putString("note.title", note.getTitle());
+            bundle.putString("note.content", note.getContent());
+
+            editIntent.putExtras(bundle);
+
+            view.getContext().startActivity(editIntent);
         });
     }
+
 
     void filter(String filter) {
         this.filtered = this.notes.stream()

@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), NoteActivity.class));
     }
 
-    public void onReminderButton(View view){
+    public void onReminderButton(View view) {
+        startActivity(new Intent(getApplicationContext(), ReminderActivity.class));
+    }
+
+    public void onPhonebookButton(View view) {
         notImplemented();
     }
 
-    public void onPhonebookButton(View view){
-        notImplemented();
-    }
-
-    public void onMultimediaButton(View view){
+    public void onMultimediaButton(View view) {
         notImplemented();
     }
 
