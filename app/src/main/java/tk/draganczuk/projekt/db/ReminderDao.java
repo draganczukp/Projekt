@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Dao
+public
 interface ReminderDao {
     @Query("SELECT * FROM reminder")
     LiveData<List<Reminder>> getAll();
@@ -21,8 +22,8 @@ interface ReminderDao {
     LiveData<Reminder> findById(int id);
 
     @Insert
-    void insertAll(Reminder... users);
+    void insertAll(Reminder... reminders);
 
     @Delete
-    void delete(Reminder user);
+    void delete(Reminder reminder);
 }

@@ -16,17 +16,16 @@ public abstract class ReminderDatabase extends RoomDatabase {
     private static ReminderDatabase INSTANCE = null;
 
     public static ReminderDatabase get(Context context) {
-        ReminderDatabase tempInstance = INSTANCE;
-        if (tempInstance != null) {
-            return tempInstance;
-        }
-        ReminderDatabase instance = Room.databaseBuilder(
-                context.getApplicationContext(),
-                ReminderDatabase.class,
-                "word_database"
-        ).build();
-        INSTANCE = instance;
-        return instance;
 
+        if (INSTANCE == null) {
+
+            INSTANCE = Room.databaseBuilder(
+                    context.getApplicationContext(),
+                    ReminderDatabase.class,
+                    "word_database"
+            ).build();
+        }
+
+        return INSTANCE;
     }
 }
