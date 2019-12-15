@@ -11,8 +11,6 @@ import androidx.room.RoomDatabase;
 public abstract class ReminderDatabase extends RoomDatabase {
     public abstract ReminderDao reminderDao();
 
-    // Singleton prevents multiple instances of database opening at the
-    // same time.
     private static ReminderDatabase INSTANCE = null;
 
     public static ReminderDatabase get(Context context) {
