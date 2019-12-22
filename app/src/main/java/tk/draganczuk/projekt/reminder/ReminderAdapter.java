@@ -15,15 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 import lombok.RequiredArgsConstructor;
 import tk.draganczuk.projekt.R;
@@ -74,7 +69,13 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHo
             reminderItemNote.setPaintFlags(reminderItemNote.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             reminderItemDateTime.setPaintFlags(reminderItemDateTime.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
+            int color = holder.itemView.getContext().getColor(R.color.gray);
+
+            reminderItemDateTime.setTextColor(color);
+            reminderItemTitle.setTextColor(color);
+            reminderItemNote.setTextColor(color);
         }
+
         reminderItemDeleteButton.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "DELETE " + reminder.getName(), Toast.LENGTH_SHORT).show();
             reminderViewModel.deleteReminder(reminder);
@@ -86,7 +87,6 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHo
 
                     Intent editIntent = new Intent(view.getContext(), EditReminderActivity.class);
                     Bundle bundle = new Bundle();
-
 
                     bundle.putInt("editing", reminder.getId());
 

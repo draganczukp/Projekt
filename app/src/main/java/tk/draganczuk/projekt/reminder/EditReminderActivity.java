@@ -48,11 +48,11 @@ public class EditReminderActivity extends AppCompatActivity implements View.OnCl
             ReminderDao dao = ReminderDatabase.get(this).reminderDao();
             int id = getIntent().getIntExtra("editing", -1);
             Calendar cur = Calendar.getInstance();
-            cur.setTimeInMillis(current.getDate());
 
             // Hack, bo baza danych nie lubi być na głównym wątku
             Executors.newSingleThreadExecutor().execute(() -> {
                 current = dao.findById(id);
+                cur.setTimeInMillis(current.getDate());
                 reminderName.setText(current.getName());
                 reminderNote.setText(current.getNote());
                 reminderDate.updateDate(cur.get(Calendar.YEAR),

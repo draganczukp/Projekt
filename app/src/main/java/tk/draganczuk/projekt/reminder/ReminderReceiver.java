@@ -41,6 +41,8 @@ public class ReminderReceiver extends BroadcastReceiver {
                     Calendar.getInstance().getTimeInMillis()
             );
 
+            Log.d(TAG, "onReceive: Reminders: " + reminders.size());
+
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             for (Reminder reminder : reminders) {
                 Log.d(TAG, "onReceive: " + reminder);

@@ -15,10 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".contacts.EditContactActivity"></activity>
+        <activity
+            android:name=".contacts.ContactsActivity"
+            android:label="@string/title_activity_contacts"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+
         <receiver
             android:name=".reminder.ReminderReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
         <receiver
             android:name=".reminder.ReminderBootReceiver"
             android:enabled="true">

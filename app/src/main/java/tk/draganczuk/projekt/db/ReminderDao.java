@@ -30,6 +30,6 @@ interface ReminderDao {
     @Update
     void update(Reminder reminder);
 
-    @Query("SELECT * FROM reminder WHERE date BETWEEN (:date - 5000) AND (:date + 5000)")
+    @Query("SELECT * FROM reminder WHERE date BETWEEN (:date - 10000) AND (:date + 10000)")
     List<Reminder> findByDateAndTime(long date);
 }

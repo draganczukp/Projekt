@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class ReminderScheduler extends BroadcastReceiver {
     static final String TAG = "ReminderScheduler";
@@ -26,16 +27,15 @@ public class ReminderScheduler extends BroadcastReceiver {
         intent.setAction("reminder.notify");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+        Objects.requireNonNull(alarmManager).setRepeating(AlarmManager.RTC_WAKEUP,
                 cal.getTimeInMillis(),
-                60_000
-                , pendingIntent);
+                60_000,
+                pendingIntent);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(intent.getAction().equals("android.intent.action.BOOT_COMPLETED")){
+        if(Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")){
             schedule(context);
         }
     }
