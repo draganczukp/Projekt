@@ -10,13 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import lombok.Getter;
 import lombok.Setter;
 import tk.draganczuk.projekt.R;

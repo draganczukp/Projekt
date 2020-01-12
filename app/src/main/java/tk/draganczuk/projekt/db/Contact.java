@@ -1,6 +1,8 @@
 package tk.draganczuk.projekt.db;
 
-import androidx.room.ColumnInfo;
+import android.net.Uri;
+
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -14,18 +16,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public
-class Reminder {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+public class Contact {
 
-    @ColumnInfo(name = "name")
-    private String name;
+	@PrimaryKey(autoGenerate = true)
+	private int id;
 
-    @ColumnInfo(name = "date")
-    private long date;
+	@Nullable
+	private String avatar;
 
-    @ColumnInfo(name = "note")
-    private String note;
+	private String firstName;
+
+	private String lastName;
+
+	private String phoneNumber;
+
+	private String email;
+
+	private String gender;
 
 }

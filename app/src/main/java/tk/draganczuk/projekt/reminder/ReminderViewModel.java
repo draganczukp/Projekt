@@ -2,17 +2,16 @@ package tk.draganczuk.projekt.reminder;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import tk.draganczuk.projekt.db.AppDatabase;
 import tk.draganczuk.projekt.db.Reminder;
 import tk.draganczuk.projekt.db.ReminderDao;
-import tk.draganczuk.projekt.db.ReminderDatabase;
 
 public class ReminderViewModel extends AndroidViewModel {
 
@@ -22,7 +21,7 @@ public class ReminderViewModel extends AndroidViewModel {
     public ReminderViewModel(@NonNull Application application) {
         super(application);
 
-        reminderDao = ReminderDatabase.get(application.getApplicationContext()).reminderDao();
+        reminderDao = AppDatabase.get(application.getApplicationContext()).reminderDao();
         executorService = Executors.newSingleThreadExecutor();
 
     }

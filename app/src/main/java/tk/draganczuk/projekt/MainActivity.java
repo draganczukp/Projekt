@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import tk.draganczuk.projekt.contacts.ContactsActivity;
 import tk.draganczuk.projekt.reminder.ReminderActivity;
-import tk.draganczuk.projekt.reminder.ReminderReceiver;
 import tk.draganczuk.projekt.reminder.ReminderScheduler;
 
 public class MainActivity extends AppCompatActivity {

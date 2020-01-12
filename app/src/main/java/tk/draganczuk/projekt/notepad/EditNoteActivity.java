@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import androidx.appcompat.app.AppCompatActivity;
 import tk.draganczuk.projekt.R;
 
 public class EditNoteActivity extends AppCompatActivity {

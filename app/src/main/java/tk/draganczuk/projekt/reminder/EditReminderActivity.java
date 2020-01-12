@@ -7,19 +7,15 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
 import java.util.concurrent.Executors;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import tk.draganczuk.projekt.R;
+import tk.draganczuk.projekt.db.AppDatabase;
 import tk.draganczuk.projekt.db.Reminder;
 import tk.draganczuk.projekt.db.ReminderDao;
-import tk.draganczuk.projekt.db.ReminderDatabase;
 
 public class EditReminderActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,7 +41,7 @@ public class EditReminderActivity extends AppCompatActivity implements View.OnCl
                 .get(ReminderViewModel.class);
 
         if (getIntent().hasExtra("editing")) {
-            ReminderDao dao = ReminderDatabase.get(this).reminderDao();
+            ReminderDao dao = AppDatabase.get(this).reminderDao();
             int id = getIntent().getIntExtra("editing", -1);
             Calendar cur = Calendar.getInstance();
 

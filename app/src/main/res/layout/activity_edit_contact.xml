@@ -7,50 +7,120 @@
     tools:context=".contacts.EditContactActivity">
 
     <EditText
-        android:id="@+id/contactLastName"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/contactFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/first_name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/contactLastName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/contactLastName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/last_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contactFirstName"
+        android:autofillHints="" />
+
+
+    <EditText
+        android:id="@+id/contactEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:hint="@string/e_mail"
         app:layout_constraintEnd_toEndOf="@+id/contactLastName"
         app:layout_constraintStart_toStartOf="@+id/contactFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/contactFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/contactFirstName"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/contactNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        android:hint="@string/number"
+        app:layout_constraintEnd_toEndOf="@+id/contactEmail"
+        app:layout_constraintStart_toStartOf="@+id/contactEmail"
+        app:layout_constraintTop_toBottomOf="@+id/contactEmail"
+        android:autofillHints="" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contactMaleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/male"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/contactGenderSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/contactGenderSwitch"
+        app:layout_constraintTop_toTopOf="@+id/contactGenderSwitch" />
+
+    <TextView
+        android:id="@+id/contactFemaleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/female"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/contactGenderSwitch"
+        app:layout_constraintStart_toEndOf="@+id/contactGenderSwitch"
+        app:layout_constraintTop_toTopOf="@+id/contactGenderSwitch"
+        />
+
+    <Switch
+        android:id="@+id/contactGenderSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/contactNumber"
+        app:layout_constraintStart_toStartOf="@+id/contactNumber"
+        app:layout_constraintTop_toBottomOf="@+id/contactNumber" />
+
+    <ImageButton
+        android:id="@+id/contactAvatarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:srcCompat="@drawable/man"
+        android:onClick="pickFromGallery" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/contactAvatarButton"
+        app:layout_constraintStart_toStartOf="@+id/contactAvatarButton"
+        app:layout_constraintTop_toBottomOf="@+id/contactGenderSwitch" />
 </androidx.constraintlayout.widget.ConstraintLayout>

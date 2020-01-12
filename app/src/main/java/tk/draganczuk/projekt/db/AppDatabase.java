@@ -7,19 +7,20 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {Reminder.class}, version = 1, exportSchema = false)
-public abstract class ReminderDatabase extends RoomDatabase {
+@Database(entities = {Reminder.class, Contact.class}, version = 1, exportSchema = false)
+public abstract class AppDatabase extends RoomDatabase {
     public abstract ReminderDao reminderDao();
+    public abstract ContactDao contactDao();
 
-    private static ReminderDatabase INSTANCE = null;
+    private static AppDatabase INSTANCE = null;
 
-    public static ReminderDatabase get(Context context) {
+    public static AppDatabase get(Context context) {
 
         if (INSTANCE == null) {
 
             INSTANCE = Room.databaseBuilder(
                     context.getApplicationContext(),
-                    ReminderDatabase.class,
+                    AppDatabase.class,
                     "word_database"
             ).build();
         }

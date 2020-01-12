@@ -13,13 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
+        android:theme="@style/Theme.MaterialComponents.NoActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".contacts.EditContactActivity"></activity>
+        <activity android:name=".contacts.EditContactActivity" />
         <activity
             android:name=".contacts.ContactsActivity"
-            android:label="@string/title_activity_contacts"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+            android:label="@string/title_activity_contacts" />
 
         <receiver
             android:name=".reminder.ReminderReceiver"
