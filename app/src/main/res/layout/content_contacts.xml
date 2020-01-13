@@ -8,8 +8,24 @@
     tools:context=".contacts.ContactsActivity"
     tools:showIn="@layout/activity_contacts">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contactsRecycler"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/contactsFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/filter"
+            android:importantForAutofill="no" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

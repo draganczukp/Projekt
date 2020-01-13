@@ -2,31 +2,26 @@ package tk.draganczuk.projekt.contacts;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.PermissionChecker;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.room.util.StringUtil;
 import tk.draganczuk.projekt.R;
 import tk.draganczuk.projekt.db.AppDatabase;
 import tk.draganczuk.projekt.db.Contact;
@@ -41,7 +36,6 @@ public class EditContactActivity extends AppCompatActivity {
 	private Contact current;
 	ExecutorService executor;
 	private Uri selectedImage;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +90,11 @@ public class EditContactActivity extends AppCompatActivity {
 				contactGenderSwitch.setChecked(checked);
 				updateGenderInfo(checked);
 
-				selectedImage = Optional.ofNullable(current).map(Contact::getAvatar).map(Uri::parse).orElse(null);
+				selectedImage = Optional.ofNullable(current)
+						.map(Contact::getAvatar)
+						.map(Uri::parse)
+						.orElse(null);
+
 				setAvatarImage(selectedImage);
 			} catch (ExecutionException | InterruptedException e) {
 				e.printStackTrace();
@@ -109,9 +107,6 @@ public class EditContactActivity extends AppCompatActivity {
 
 	private void setAvatarImage(Uri imagePath) {
 		ImageButton avatarButton = findViewById(R.id.contactAvatarButton);
-
-		Picasso.get().setLoggingEnabled(true);
-		Picasso.get().setIndicatorsEnabled(true);
 
 		Picasso.get()
 				.load(imagePath)

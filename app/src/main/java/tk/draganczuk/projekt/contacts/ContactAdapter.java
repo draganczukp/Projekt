@@ -12,12 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import lombok.RequiredArgsConstructor;
 import tk.draganczuk.projekt.R;
 import tk.draganczuk.projekt.db.Contact;
@@ -29,6 +32,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
 	private List<Contact> contacts;
 	private final ContactViewModel contactViewModel;
+
+	private String filter = "";
+	private Pattern filterPattern;
+	private List<Contact> filtered;
 
 	@NonNull
 	@Override
@@ -43,13 +50,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		Contact contact = contacts.get(position);
+		Contact contact = filtered.get(position);
 
 		ImageView contactAvatarView = holder.contactAvatarView;
 		TextView contactNameView = holder.contactNameView;
 		TextView contactNumberView = holder.contactNumberView;
 		TextView contactEmailView = holder.contactEmailView;
 		ImageButton contactDeleteButton = holder.contactDeleteButton;
+		ImageButton contactCallButton = holder.contactCallButton;
 
 		if (contact.getAvatar() == null) {
 			contactAvatarView.setImageDrawable(holder.itemView.getContext().getDrawable(
@@ -74,29 +82,51 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 			notifyDataSetChanged();
 		});
 
-		holder.itemView.setOnClickListener(
-				(view) -> {
+		contactCallButton.setOnClickListener(view -> {
+			Intent callIntent = new Intent(Intent.ACTION_DIAL);
+			callIntent.setData(Uri.parse("tel:123456789"));
+			view.getContext().startActivity(callIntent);
+		});
 
-					Intent editIntent = new Intent(view.getContext(), EditContactActivity.class);
-					Bundle bundle = new Bundle();
+		holder.itemView.setOnClickListener((view) -> {
 
-					bundle.putInt("editing", contact.getId());
+			Intent editIntent = new Intent(view.getContext(), EditContactActivity.class);
+			Bundle bundle = new Bundle();
 
-					editIntent.putExtras(bundle);
+			bundle.putInt("editing", contact.getId());
 
-					view.getContext().startActivity(editIntent);
+			editIntent.putExtras(bundle);
 
-				});
+			view.getContext().startActivity(editIntent);
+
+		});
 	}
 
 	@Override
 	public int getItemCount() {
-		return contacts == null ? 0 : contacts.size();
+		return filtered == null ? 0 : filtered.size();
 	}
 
 	void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
+		filter(this.filter);
+//		notifyDataSetChanged();
+	}
+
+	void filter(String filterText) {
+		this.filter = filterText;
+		this.filterPattern = Pattern.compile(filterText, Pattern.CASE_INSENSITIVE);
+		this.filtered = this.contacts.stream()
+				.filter(this::contactFilter)
+				.collect(Collectors.toList());
 		notifyDataSetChanged();
+	}
+
+	private boolean contactFilter(Contact contact) {
+		return filterPattern.matcher(contact.getEmail()).find()
+				|| filterPattern.matcher(contact.getFirstName()).find()
+				|| filterPattern.matcher(contact.getLastName()).find()
+				|| filterPattern.matcher(contact.getPhoneNumber()).find();
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
@@ -105,6 +135,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 		TextView contactEmailView;
 		ImageView contactAvatarView;
 		ImageButton contactDeleteButton;
+		ImageButton contactCallButton;
 
 
 		ViewHolder(@NonNull View itemView) {
@@ -115,6 +146,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 			contactNameView = itemView.findViewById(R.id.contactItemName);
 			contactNumberView = itemView.findViewById(R.id.contactItemNumber);
 			contactDeleteButton = itemView.findViewById(R.id.contactItemDelete);
+			contactCallButton = itemView.findViewById(R.id.contactCallButton);
 		}
 	}
 }
