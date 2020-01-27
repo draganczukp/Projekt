@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="tk.draganczuk.projekt">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <service
+            android:name=".multimedia.MusicPlayerService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".multimedia.MusicPlayerActivity" />
+        <activity android:name=".multimedia.WebsiteActivity" />
+        <activity android:name=".multimedia.TakePhotoActivity" />
+        <activity android:name=".multimedia.MultimediaActivity" />
         <activity android:name=".contacts.EditContactActivity" />
         <activity
             android:name=".contacts.ContactsActivity"

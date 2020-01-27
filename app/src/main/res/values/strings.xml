@@ -115,4 +115,8 @@
     <string name="female">Kobieta</string>
     <string name="label_avatar" />
     <string name="filter">Filter</string>
+    <string name="photo">Photo</string>
+    <string name="paint">Paint</string>
+    <string name="music">Music</string>
+    <string name="website">Website</string>
 </resources>

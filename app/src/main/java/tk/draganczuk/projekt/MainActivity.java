@@ -6,10 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import tk.draganczuk.projekt.contacts.ContactsActivity;
+import tk.draganczuk.projekt.multimedia.MultimediaActivity;
 import tk.draganczuk.projekt.reminder.ReminderActivity;
 import tk.draganczuk.projekt.reminder.ReminderScheduler;
 
@@ -39,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMultimediaButton(View view) {
-        notImplemented();
+	    startActivity(new Intent(getApplicationContext(), MultimediaActivity.class));
     }
 
-    private void notImplemented() {
-        Toast.makeText(getApplicationContext(), "NOT IMPLEMENTED", Toast.LENGTH_LONG).show();
-    }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".multimedia.MultimediaActivity">
+
+    <Button
+        android:id="@+id/photoButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="onPhotoButtonClick"
+        android:text="@string/photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/paintButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:onClick="onPaintButtonClick"
+        android:text="@string/paint"
+        app:layout_constraintEnd_toEndOf="@+id/photoButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/photoButton"
+        app:layout_constraintTop_toBottomOf="@+id/photoButton" />
+
+    <Button
+        android:id="@+id/musicButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:onClick="onMusicButtonClick"
+        android:text="@string/music"
+        app:layout_constraintEnd_toEndOf="@+id/paintButton"
+        app:layout_constraintStart_toStartOf="@+id/paintButton"
+        app:layout_constraintTop_toBottomOf="@+id/paintButton" />
+
+    <Button
+        android:id="@+id/websiteButton"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:onClick="onWebsiteButtonClick"
+        android:text="@string/website"
+        app:layout_constraintEnd_toEndOf="@+id/musicButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/musicButton"
+        app:layout_constraintTop_toBottomOf="@+id/musicButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
